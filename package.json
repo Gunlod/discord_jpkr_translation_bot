@@ -1,0 +1,25 @@
+{
+  "name": "discordbot_honyaku_jpkr",
+  "version": "1.0.0",
+  "description": "Discord bot that translates messages between Japanese and Korean channels using DeepL.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "discord",
+    "translation",
+    "deepl",
+    "japanese",
+    "korean"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "deepl-node": "^1.14.0",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
