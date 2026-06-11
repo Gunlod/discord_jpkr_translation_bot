@@ -53,14 +53,19 @@ const channelRoutes = new Map([
   ]
 ]);
 
-function buildForwardMessage(translatedText, attachments) {
+function getSenderName(message) {
+  return message.member?.displayName || message.author.username;
+}
+
+function buildForwardMessage(senderName, translatedText, attachments) {
   const attachmentUrls = attachments.map((attachment) => attachment.url);
+  const translatedMessage = `${senderName}:\n${translatedText}`;
 
   if (attachmentUrls.length === 0) {
-    return translatedText;
+    return translatedMessage;
   }
 
-  return `${translatedText}\n\n${attachmentUrls.join("\n")}`;
+  return `${translatedMessage}\n\n${attachmentUrls.join("\n")}`;
 }
 
 client.once(Events.ClientReady, (readyClient) => {
@@ -96,6 +101,7 @@ client.on(Events.MessageCreate, async (message) => {
     }
 
     const content = buildForwardMessage(
+      getSenderName(message),
       result.text,
       Array.from(message.attachments.values())
     );
