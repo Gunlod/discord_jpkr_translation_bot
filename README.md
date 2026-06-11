@@ -53,16 +53,16 @@ npm install
 
 ## .envの設定方法
 
-`.env.example` をコピーして `.env` を作成します。
+`env.example` をコピーして `.env` を作成します。
 
 ```bash
-cp .env.example .env
+cp env.example .env
 ```
 
 Windows PowerShellの場合:
 
 ```powershell
-Copy-Item .env.example .env
+Copy-Item env.example .env
 ```
 
 `.env` に以下を設定してください。
