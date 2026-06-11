@@ -66,19 +66,17 @@ function getSenderName(message) {
   return escapeMarkdown(message.member?.displayName || message.author.username);
 }
 
-function formatCodeBlock(text) {
-  return `\`\`\`\n${text.replaceAll("```", "`\u200b``")}\n\`\`\``;
-}
-
 function buildForwardMessage(senderName, translatedText, attachments) {
   const attachmentUrls = attachments.map((attachment) => attachment.url);
-  const translatedMessage = `**${senderName}:**\n${formatCodeBlock(translatedText)}`;
+  const messageParts = [
+    `**${senderName}:**\n${translatedText}`
+  ];
 
-  if (attachmentUrls.length === 0) {
-    return translatedMessage;
+  if (attachmentUrls.length > 0) {
+    messageParts.push(attachmentUrls.join("\n"));
   }
 
-  return `${translatedMessage}\n\n${attachmentUrls.join("\n")}`;
+  return messageParts.join("\n\n");
 }
 
 client.once(Events.ClientReady, (readyClient) => {
