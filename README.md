@@ -1,0 +1,1 @@
+# discord_jpkr_translation_bot
