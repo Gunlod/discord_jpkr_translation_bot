@@ -1,4 +1,8 @@
-require("dotenv").config();
+const path = require("path");
+
+require("dotenv").config({
+  path: path.resolve(__dirname, "../.env")
+});
 
 const { Client, GatewayIntentBits, Events } = require("discord.js");
 const deepl = require("deepl-node");

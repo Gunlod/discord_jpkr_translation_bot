@@ -53,16 +53,16 @@ npm install
 
 ## .envの設定方法
 
-`env.example` をコピーして `.env` を作成します。
+`.env.example` をコピーして `.env` を作成します。
 
 ```bash
-cp env.example .env
+cp .env.example .env
 ```
 
 Windows PowerShellの場合:
 
 ```powershell
-Copy-Item env.example .env
+Copy-Item .env.example .env
 ```
 
 `.env` に以下を設定してください。
@@ -83,6 +83,34 @@ npm start
 ```
 
 起動に成功すると、コンソールにBotのログイン名が表示されます。
+
+## PM2で起動する場合
+
+PM2では `ecosystem.config.js` を使って起動できます。
+
+```bash
+pm2 start ecosystem.config.js
+```
+
+ログ確認:
+
+```bash
+pm2 logs discordbot-honyaku-jpkr
+```
+
+停止:
+
+```bash
+pm2 stop discordbot-honyaku-jpkr
+```
+
+再起動:
+
+```bash
+pm2 restart discordbot-honyaku-jpkr
+```
+
+このBotは `src/index.js` から見てプロジェクト直下の `.env` を明示的に読み込むため、PM2の実行場所が変わっても `.env` を読み込めます。
 
 ## 注意
 
