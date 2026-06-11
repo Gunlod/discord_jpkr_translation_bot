@@ -4,7 +4,12 @@ require("dotenv").config({
   path: path.resolve(__dirname, "../.env")
 });
 
-const { Client, GatewayIntentBits, Events } = require("discord.js");
+const {
+  Client,
+  GatewayIntentBits,
+  Events,
+  escapeMarkdown
+} = require("discord.js");
 const deepl = require("deepl-node");
 
 const {
@@ -58,12 +63,12 @@ const channelRoutes = new Map([
 ]);
 
 function getSenderName(message) {
-  return message.member?.displayName || message.author.username;
+  return escapeMarkdown(message.member?.displayName || message.author.username);
 }
 
 function buildForwardMessage(senderName, translatedText, attachments) {
   const attachmentUrls = attachments.map((attachment) => attachment.url);
-  const translatedMessage = `${senderName}:\n${translatedText}`;
+  const translatedMessage = `**${senderName}:**\n${translatedText}`;
 
   if (attachmentUrls.length === 0) {
     return translatedMessage;
