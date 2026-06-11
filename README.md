@@ -17,6 +17,16 @@ Discordサーバー内の日本語チャンネルと韓国語チャンネルの�
 - DeepL API Key
 - 翻訳対象にする2つのDiscordチャンネルID
 
+## 使用モジュール
+
+このBotでは以下のnpmモジュールを使用します。
+
+- `discord.js`: Discord Bot APIを扱うためのライブラリ
+- `deepl-node`: DeepL APIで翻訳するためのライブラリ
+- `dotenv`: `.env` から環境変数を読み込むためのライブラリ
+
+`npm install` を実行すると、`package.json` に記載されたこれらのモジュールがインストールされます。
+
 ## Discord Developer PortalでBotを作る手順
 
 1. [Discord Developer Portal](https://discord.com/developers/applications) を開きます。
@@ -111,6 +121,24 @@ pm2 restart discordbot-honyaku-jpkr
 ```
 
 このBotは `src/index.js` から見てプロジェクト直下の `.env` を明示的に読み込むため、PM2の実行場所が変わっても `.env` を読み込めます。
+
+## PM2で `MODULE_NOT_FOUND` が出る場合
+
+`Cannot find module 'dotenv'` のようなエラーが出る場合は、サーバー側で依存パッケージがインストールされていません。
+
+Botを置いたディレクトリで `npm install` を実行してください。
+
+```bash
+cd /home/discordbot/discordbot_honyaku_jpkr
+npm install
+pm2 restart discordbot-honyaku-jpkr
+```
+
+PM2のプロセス名を別名で起動している場合は、その名前で再起動してください。
+
+```bash
+pm2 restart honyaku-jpkr
+```
 
 ## 注意
 
